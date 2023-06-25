@@ -14,7 +14,6 @@ function App() {
     <div className='h-screen bg-gradient-to-r from-indigo-400 to-blue-400'>
 
       <Navbar />
-
       {
         location === 'home'
           ? <Home />

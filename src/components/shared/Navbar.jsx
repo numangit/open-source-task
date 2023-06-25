@@ -1,26 +1,31 @@
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { StateContext } from '../../context/StateProvider';
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Orders', href: '#' },
+  { name: 'Home', location: 'home' },
+  { name: 'Orders', location: 'orders' },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { setLocation } = useContext(StateContext);
+
   return (
     <header className="bg-slate-50/20 backdrop-blur-md">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <button
+            onClick={() => setLocation('home')}
+            className="-m-1.5 p-1.5">
             <span className="sr-only">RayCube</span>
             <img
               className="h-8 w-auto"
               src="https://img.icons8.com/external-becris-lineal-color-becris/64/external-cube-business-intelligence-becris-lineal-color-becris.png"
               alt="cube"
             />
-          </a>
+          </button>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -34,29 +39,35 @@ export default function Navbar() {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="text-base font-semibold leading-6 text-gray-50 hover:text-slate-700">
+            <button
+              key={item.name}
+              onClick={() => setLocation(`${item.location}`)}
+              className="text-base font-semibold leading-6 text-gray-50 hover:text-slate-700">
               {item.name}
-            </a>
+            </button>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-base font-semibold leading-6 text-gray-50 hover:text-slate-700">
+          <button
+            className="text-base font-semibold leading-6 text-gray-50 hover:text-slate-700">
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </button>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50 bg-slate-50/20 backdrop-blur-md" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 bg-slate-50/20 backdrop-blur-md">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <button
+              onClick={() => setLocation('home')}
+              className="-m-1.5 p-1.5">
               <span className="sr-only">RayCube</span>
               <img
                 className="h-8 w-auto"
                 src="https://img.icons8.com/external-becris-lineal-color-becris/64/external-cube-business-intelligence-becris-lineal-color-becris.png"
                 alt="cube"
               />
-            </a>
+            </button>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-900"
@@ -70,22 +81,21 @@ export default function Navbar() {
             <div className="-my-6 divide-y divide-white/60">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-50 hover:bg-gray-700"
+                    onClick={() => setLocation(`${item.location}`)}
+                    className="-mx-3 w-full text-left block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-50 hover:bg-gray-700"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-50 hover:bg-gray-700"
+                <button
+                  className="-mx-3 w-full text-left block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-50 hover:bg-gray-700"
                 >
                   Log in
-                </a>
+                </button>
               </div>
             </div>
           </div>
