@@ -8,7 +8,7 @@ function App() {
   const { location } = useContext(StateContext);
 
   return (
-    <div className='h-screen bg-pink-300'>
+    <div className='h-screen bg-gradient-to-r from-indigo-400 to-blue-400'>
       <Navbar />
       {
         location === 'home'
