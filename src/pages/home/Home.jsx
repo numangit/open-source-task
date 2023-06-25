@@ -1,4 +1,5 @@
 import ProductCard from "../../components/home/ProductCard";
+import { products } from "../../data/data";
 
 const Home = () => {
   return (
@@ -7,13 +8,10 @@ const Home = () => {
 
       {/* Products section */}
       <section className="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {
+          products.map((product) => <ProductCard key={product.id} product={product} />)
+        }
+
       </section>
     </>
   );
