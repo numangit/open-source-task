@@ -11,7 +11,10 @@ function App() {
   const { location } = useContext(StateContext);
 
   return (
-    <div className='bg-gradient-to-r from-purple-500 to-blue-500'>
+    <div
+      // className='bg-pink-500'
+      className='bg-gradient-to-r from-purple-500 to-blue-500'
+    >
 
       <Navbar />
       {

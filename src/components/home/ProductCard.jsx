@@ -1,6 +1,8 @@
+import Modal from "./Modal";
+
 /* eslint-disable react/prop-types */
 const ProductCard = ({ product }) => {
-  const { name, description, price, image, deliveryOption } = product || {};
+  const { name, description, price, image } = product || {};
 
   return (
     <div className="block rounded-lg p-4 shadow-sm shadow-indigo-100 bg-slate-50">
@@ -43,9 +45,7 @@ const ProductCard = ({ product }) => {
               <p className="text-base font-medium">${price}</p>
             </div>
           </div>
-          <button className="btn btn-sm bg-indigo-400 px-3 py-2 rounded-md text-white ">
-            Order now
-          </button>
+          <Modal product={product} />
         </div>
       </div>
     </div>

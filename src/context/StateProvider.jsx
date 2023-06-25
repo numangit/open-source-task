@@ -8,16 +8,19 @@ const StateProvider = ({ children }) => {
   //nav location state
   const [location, setLocation] = useState('home');
 
+  //state for orders
+  const [orders, setOrders] = useState([]);
+
   const stateData = {
     location,
-    setLocation
+    setLocation,
+    orders,
+    setOrders
   };
 
   return (
     <StateContext.Provider value={stateData}>
-      {
-        children
-      }
+      {children}
     </StateContext.Provider>
   );
 }
